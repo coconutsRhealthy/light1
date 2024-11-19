@@ -10,12 +10,15 @@ import { DiscountsTableComponent } from './discounts-table/discounts-table.compo
 
 import { FormsModule } from '@angular/forms';
 
+import { WinkelsComponent } from './winkels/winkels.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SimpleBootstrapComponent,
-    DiscountsTableComponent
+    DiscountsTableComponent,
+    WinkelsComponent
   ],
   imports: [
     BrowserModule,
