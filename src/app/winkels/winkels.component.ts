@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DiscountsService } from '../services/discounts.service';
 
 @Component({
   selector: 'app-winkels',
@@ -11,13 +12,23 @@ export class WinkelsComponent implements OnInit {
 
   isMenuCollapsed = true;
 
-  constructor() {
-    var combinedWinkels = []; //logic to get unique webshops from data
-    var winkels = this.removePartsInBracketsAndDoubleEntries(combinedWinkels);
-    this.groupedWinkels = this.groupWinkelsByLetter(winkels);
+  ngOnInit(): void {
+    this.discountsService.getDiscounts().subscribe((data) => {
+      const combinedWinkels = Array.from(
+        new Set(
+          data.map((line) => {
+            const [company] = line.split(', ');
+            return company;
+          })
+        )
+      );
+
+      const winkels = this.removePartsInBracketsAndDoubleEntries(combinedWinkels);
+      this.groupedWinkels = this.groupWinkelsByLetter(winkels);
+    });
   }
 
-  ngOnInit(): void {
+  constructor(private discountsService: DiscountsService) {
 
   }
 
