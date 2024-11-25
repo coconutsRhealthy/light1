@@ -22,7 +22,7 @@
       <tbody>
       <tr *ngFor="let discount of paginatedDiscounts">
         <td>{{ discount.company }}</td>
-        <td>{{ discount.discountCode }}</td>
+        <button class="btn btn-primary" (click)="openModal(discount)">pak code</button>
         <td>{{ discount.percentage }}%</td>
         <td>{{ discount.date }}</td>
       </tr>
@@ -48,3 +48,9 @@
     </button>
   </div>
 </div>
+
+<app-modal
+        [isVisible]="isModalVisible"
+        [discount]="selectedDiscount"
+        (closed)="closeModal()">
+</app-modal>

@@ -1,0 +1,20 @@
+<div class="modal-backdrop" *ngIf="isVisible" (click)="closeModal()"></div>
+<div class="modal" *ngIf="isVisible">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Discount Details</h5>
+                <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body" *ngIf="discount">
+                <p><strong>Company:</strong> {{ discount.company }}</p>
+                <p><strong>Discount Code:</strong> {{ discount.discountCode }}</p>
+                <p><strong>Percentage:</strong> {{ discount.percentage }}%</p>
+                <p><strong>Date:</strong> {{ discount.date }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

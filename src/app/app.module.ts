@@ -11,6 +11,7 @@ import { DiscountsTableComponent } from './discounts-table/discounts-table.compo
 import { FormsModule } from '@angular/forms';
 
 import { WinkelsComponent } from './winkels/winkels.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { WinkelsComponent } from './winkels/winkels.component';
     AppComponent,
     SimpleBootstrapComponent,
     DiscountsTableComponent,
-    WinkelsComponent
+    WinkelsComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

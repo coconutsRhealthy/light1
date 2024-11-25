@@ -19,6 +19,8 @@ export class DiscountsTableComponent implements OnInit {
   searchTerm: string = '';
   page: number = 1;
   itemsPerPage: number = 50;
+  isModalVisible = false;
+  selectedDiscount: any = null;
 
   constructor(private discountsService: DiscountsService) {}
 
@@ -60,5 +62,15 @@ export class DiscountsTableComponent implements OnInit {
 
   get totalPages(): number {
     return Math.ceil(this.filteredDiscounts.length / this.itemsPerPage);
+  }
+
+  openModal(discount: any) {
+    this.selectedDiscount = discount;
+    this.isModalVisible = true;
+  }
+
+  closeModal() {
+    this.isModalVisible = false;
+    this.selectedDiscount = null;
   }
 }
