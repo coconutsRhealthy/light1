@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { SimpleBootstrapComponent } from './simple-bootstrap/simple-bootstrap.component';
 
 import { DiscountsTableComponent } from './discounts-table/discounts-table.component';
 
@@ -41,7 +40,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleBootstrapComponent,
     DiscountsTableComponent,
     WinkelsComponent,
     ModalComponent,
