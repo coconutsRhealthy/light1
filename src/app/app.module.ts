@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { RouterModule, Routes } from '@angular/router';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -13,6 +15,18 @@ import { FormsModule } from '@angular/forms';
 import { WinkelsComponent } from './winkels/winkels.component';
 import { ModalComponent } from './modal/modal.component';
 
+import { CompanyCodesComponent } from './company-codes/company-codes.component';
+
+const routes: Routes = [
+    {
+      path: '',
+      component: DiscountsTableComponent
+    },
+    {
+      path: ':company',
+      component: CompanyCodesComponent
+    },
+]
 
 @NgModule({
   declarations: [
@@ -20,12 +34,14 @@ import { ModalComponent } from './modal/modal.component';
     SimpleBootstrapComponent,
     DiscountsTableComponent,
     WinkelsComponent,
-    ModalComponent
+    ModalComponent,
+    CompanyCodesComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -34,7 +34,7 @@
       <ng-container *ngFor="let group of groupedWinkels">
         <li class="group-heading">{{ group.letter }}</li>
         <li *ngFor="let winkel of group.winkels">
-          <a>{{ winkel }}</a>
+          <a [routerLink]="['/', winkel.toLowerCase()]">{{ winkel }}</a>
         </li>
       </ng-container>
     </ul>
