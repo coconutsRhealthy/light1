@@ -5,35 +5,7 @@
 <!--<div *ngIf="discountCodes.length > 0">-->
   <div class="container-fluid">
     <div class="content">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-        <a class="navbar-brand" [routerLink]="'/'">
-          <img id="logo-image" src="/assets/avatar.jpeg" width="40" height="40">
-          <span class="ml-2">Diski</span>
-        </a>
-
-        <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
-          &#9776;
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="'/'" (click)="isMenuCollapsed = true">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="'/winkels'" (click)="isMenuCollapsed = true">Shops</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="'/archief'" (click)="isMenuCollapsed = true">Archief</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="'/contact'" (click)="isMenuCollapsed = true">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+      <app-navbar></app-navbar>
       <h1>{{ webshopName }} kortingscode</h1>
 
       <div class="row mb-4">

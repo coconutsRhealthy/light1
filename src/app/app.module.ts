@@ -16,6 +16,7 @@ import { WinkelsComponent } from './winkels/winkels.component';
 import { ModalComponent } from './modal/modal.component';
 
 import { CompanyCodesComponent } from './company-codes/company-codes.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
     {
@@ -35,7 +36,8 @@ const routes: Routes = [
     DiscountsTableComponent,
     WinkelsComponent,
     ModalComponent,
-    CompanyCodesComponent
+    CompanyCodesComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
