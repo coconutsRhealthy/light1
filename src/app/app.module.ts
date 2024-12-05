@@ -17,11 +17,20 @@ import { ModalComponent } from './modal/modal.component';
 
 import { CompanyCodesComponent } from './company-codes/company-codes.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
     {
       path: '',
       component: DiscountsTableComponent
+    },
+    {
+      path: 'winkels',
+      component: WinkelsComponent
+    },
+    {
+      path: 'contact',
+      component: ContactComponent
     },
     {
       path: ':company',
@@ -37,7 +46,8 @@ const routes: Routes = [
     WinkelsComponent,
     ModalComponent,
     CompanyCodesComponent,
-    NavbarComponent
+    NavbarComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
