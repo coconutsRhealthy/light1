@@ -1,8 +1,8 @@
 <div *ngIf="discountCodes.length === 0">
-  zzzzzz
+  <app-not-found></app-not-found>
 </div>
 
-<!--<div *ngIf="discountCodes.length > 0">-->
+<div *ngIf="discountCodes.length > 0">
   <div class="container-fluid">
     <div class="content">
       <app-navbar></app-navbar>
@@ -77,4 +77,4 @@
 
     </div>
   </div>
-<!--</div>-->
+</div>

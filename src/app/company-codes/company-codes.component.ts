@@ -6,6 +6,9 @@ import { LOCALE_ID } from '@angular/core';
 import { ElementRef } from '@angular/core';
 
 import { DiscountsService } from '../services/discounts.service';
+import { WebshopNameService } from '../services/webshop-name.service';
+import { CompanySeoTextService } from '../services/company-seo-text.service';
+import { MetaService } from '../services/meta.service';
 
 declare let gtag: Function;
 
@@ -15,20 +18,18 @@ declare let gtag: Function;
   styleUrls: ['./company-codes.component.css', './../app.component.css'],
   providers: [
     DatePipe,
-    { provide: LOCALE_ID, useValue: 'nl' }, // Set the locale to Dutch
+    { provide: LOCALE_ID, useValue: 'nl' },
   ]
 })
 export class CompanyCodesComponent implements OnInit {
-
   company: string;
   webshopName: string;
   companySeoText: string;
   discountCodes: { code: string, discount: string, date: string }[] = [];
 
-  isMenuCollapsed = true;
-
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private elementRef: ElementRef,
-                private discountsService: DiscountsService) { }
+                private discountsService: DiscountsService, private webshopNameService: WebshopNameService,
+                private companySeoTextService: CompanySeoTextService, private meta: MetaService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -45,40 +46,45 @@ export class CompanyCodesComponent implements OnInit {
   }
 
   private extractDiscountCodes(companyName: string): void {
-
-this.discountsService.getDiscounts().subscribe((data) => {
-    // Mapping data into the structure of allDiscountCodes
-    const allDiscountCodes = data.map((line) => {
-      const [company, discountCode, percentage, , date] = line.split(', ');
-      return {
-        company,
-        discountCode,
-        percentage: +percentage,
-        date,
-      };
-    });
-
-    // Filtering and transforming the data into the desired format
-    this.discountCodes = allDiscountCodes
-      .filter(entry => entry.company.startsWith(companyName) || entry.company.startsWith(companyName))
-      .map(entry => {
-        // Removing 'company' and keeping the necessary fields
+    this.discountsService.getDiscounts().subscribe((data) => {
+      const allDiscountCodes = data.map((line) => {
+        const [company, discountCode, percentage, , date] = line.split(', ');
         return {
-          code: entry.discountCode,
-          discount: entry.percentage.toString(), // Convert percentage to string (since discount is of type string)
-          date: entry.date
+          company,
+          discountCode,
+          percentage: +percentage,
+          date,
         };
       });
 
-    //this.discountCodes.sort((a, b) => a.code.startsWith(urlString) ? -1 : 1);
-  });
+      this.discountCodes = allDiscountCodes
+        .filter(entry => entry.company.startsWith(companyName) || entry.company.startsWith(companyName))
+        .map(entry => {
+          return {
+            code: entry.discountCode,
+            discount: entry.percentage.toString(),
+            date: entry.date
+          };
+        });
+
+      if(this.discountCodes.length > 0) {
+        this.webshopName = this.getWebshopName(this.company);
+        this.companySeoText = this.companySeoTextService.getCompanySeoText(this.company);
+        var monthYear = this.meta.getDateString();
+        this.meta.updateTitle("Werkende " + this.webshopName + " kortingscode in " + monthYear);
+        this.meta.updateMetaInfo("De nieuwste werkende kortingscode van " + this.webshopName + " in " + monthYear + "; Bespaar met deze kortingscode op online shoppen bij " + this.webshopName, "diski.nl", this.webshopName + ", Kortingscode, Korting");
+      } else {
+        this.meta.updateTitle("404 Deze pagina is niet gevonden op diski.nl");
+        this.meta.updateMetaInfo("404 Deze pagina bestaat niet op diski.nl", "diski.nl", "404");
+      }
+
+      //this.discountCodes.sort((a, b) => a.code.startsWith(urlString) ? -1 : 1);
+    });
   }
 
   formatDate(date: string): string {
-    //const formattedDate = this.getDateFromDateString(date);
-    //return this.datePipe.transform(formattedDate, 'd MMM', '', 'nl');
-
-    return date;
+    const formattedDate = this.getDateFromDateString(date);
+    return this.datePipe.transform(formattedDate, 'd MMM', '', 'nl');
   }
 
   getCurrentDateAsString(): string {
@@ -95,7 +101,13 @@ this.discountsService.getDiscounts().subscribe((data) => {
   }
 
   getWebshopName(companyName: string): string {
-    return companyName;
+    var webshopName = this.webshopNameService.getWebshopName(companyName);
+
+    if(webshopName === undefined) {
+      webshopName = companyName.charAt(0).toUpperCase() + companyName.slice(1);
+    }
+
+    return webshopName;
   }
 
   shouldDisplayPercent(discount) {
