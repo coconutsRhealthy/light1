@@ -52,18 +52,28 @@ export class CompanyCodesComponent implements OnInit {
         return {
           company,
           discountCode,
-          percentage: +percentage,
+          percentage,
           date,
         };
       });
 
+      const urlString = 'https://';
+
       this.discountCodes = allDiscountCodes
         .filter(entry => entry.company.startsWith(companyName) || entry.company.startsWith(companyName))
         .map(entry => {
+          let date;
+
+          if (entry.discountCode.startsWith(urlString)) {
+            date = this.getCurrentDateAsString();
+          } else {
+            date = entry.date;
+          }
+
           return {
             code: entry.discountCode,
             discount: entry.percentage.toString(),
-            date: entry.date
+            date: date,
           };
         });
 
@@ -78,7 +88,16 @@ export class CompanyCodesComponent implements OnInit {
         this.meta.updateMetaInfo("404 Deze pagina bestaat niet op diski.nl", "diski.nl", "404");
       }
 
-      //this.discountCodes.sort((a, b) => a.code.startsWith(urlString) ? -1 : 1);
+      this.discountCodes.sort((a, b) => a.code.startsWith(urlString) ? -1 : 1);
+
+      if(this.company === 'leolive') {
+        const firstGiftCard = this.discountCodes.find(code => code.code.startsWith(urlString));
+        this.discountCodes = firstGiftCard ? [firstGiftCard] : [{
+            code: 'Zie laatste insta post @wiegeeftkorting voor Le Olive code',
+            discount: '10',
+            date: this.getCurrentDateAsString()
+        }];
+      }
     });
   }
 
@@ -97,7 +116,8 @@ export class CompanyCodesComponent implements OnInit {
     var dateStringArray = dateString.split("-");
     var month = dateStringArray[0] - 1;
     var day = dateStringArray[1];
-    return new Date(2023, month, day);
+    const currentYear = new Date().getFullYear();
+    return new Date(currentYear, month, day);
   }
 
   getWebshopName(companyName: string): string {
