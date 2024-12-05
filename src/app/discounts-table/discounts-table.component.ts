@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
 import { DiscountsService } from '../services/discounts.service';
 
 interface Discount {
   company: string;
   discountCode: string;
-  percentage: number;
+  percentage: string;
   date: string;
 }
 
@@ -12,6 +14,10 @@ interface Discount {
   selector: 'app-discounts-table',
   templateUrl: './discounts-table.component.html',
   styleUrls: ['./discounts-table.component.css'],
+  providers: [
+    DatePipe,
+    { provide: LOCALE_ID, useValue: 'nl' },
+  ]
 })
 export class DiscountsTableComponent implements OnInit {
   discounts: Discount[] = [];
@@ -22,7 +28,7 @@ export class DiscountsTableComponent implements OnInit {
   isModalVisible = false;
   selectedDiscount: any = null;
 
-  constructor(private discountsService: DiscountsService) {}
+  constructor(private discountsService: DiscountsService, private datePipe: DatePipe) {}
 
   ngOnInit() {
     this.discountsService.getDiscounts().subscribe((data) => {
@@ -31,7 +37,7 @@ export class DiscountsTableComponent implements OnInit {
         return {
           company,
           discountCode,
-          percentage: +percentage,
+          percentage,
           date,
         };
       });
@@ -72,5 +78,19 @@ export class DiscountsTableComponent implements OnInit {
   closeModal() {
     this.isModalVisible = false;
     this.selectedDiscount = null;
+  }
+
+  formatDate(date: string): string {
+    const formattedDate = this.getDateFromDateString(date);
+    return this.datePipe.transform(formattedDate, 'd MMM', '', 'nl');
+  }
+
+  getDateFromDateString(dateString) {
+    dateString = dateString + "";
+    var dateStringArray = dateString.split("-");
+    var month = dateStringArray[0] - 1;
+    var day = dateStringArray[1];
+    const currentYear = new Date().getFullYear();
+    return new Date(currentYear, month, day);
   }
 }
