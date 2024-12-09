@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
-        <div class="mb-3">
+        <div class="mb-3 table-search-input">
           <input
                   type="text"
                   class="form-control"
@@ -43,7 +43,7 @@
             <tbody>
             <tr *ngFor="let discount of paginatedDiscounts">
               <td>{{ discount.company }}</td>
-              <button class="diski-table-button btn btn-outline-secondary" (click)="openModal(discount)">pak code</button>
+              <td><button class="diski-table-button btn btn-outline-secondary" (click)="openModal(discount)">pak code</button></td>
               <td>{{ discount.percentage }}</td>
               <td>{{ formatDate(discount.date) }}</td>
             </tr>

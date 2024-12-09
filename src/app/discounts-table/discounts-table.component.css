@@ -25,7 +25,8 @@ h1 {
 
 .table-responsive table th,
 .table-responsive table td {
-  padding: 10px 5px;
+  padding: 5px 5px;
+  vertical-align: middle;
 }
 
 .table-responsive table th {
@@ -35,4 +36,8 @@ h1 {
   border-left: none;
   border-right: none;
   border-bottom: 1px solid rgb(179, 178, 178);
+}
+
+.table-search-input {
+  padding-top: 18px;
 }
