@@ -27,6 +27,8 @@ export class DiscountsTableComponent implements OnInit {
   itemsPerPage: number = 50;
   isModalVisible = false;
   selectedDiscount: any = null;
+  sortByCompanyAscending = false;
+  sortByDateAscending = false;
 
   constructor(private discountsService: DiscountsService, private datePipe: DatePipe) {}
 
@@ -92,5 +94,24 @@ export class DiscountsTableComponent implements OnInit {
     var day = dateStringArray[1];
     const currentYear = new Date().getFullYear();
     return new Date(currentYear, month, day);
+  }
+
+  sortByCompany() {
+    this.sortByCompanyAscending = !this.sortByCompanyAscending;
+    this.filteredDiscounts.sort((a, b) => {
+      const comparison = a.company.localeCompare(b.company);
+      return this.sortByCompanyAscending ? comparison : -comparison;
+    });
+  }
+
+  sortByDate() {
+    this.sortByDateAscending = !this.sortByDateAscending;
+    this.filteredDiscounts.sort((a, b) => {
+      const dateA = this.getDateFromDateString(a.date);
+      const dateB = this.getDateFromDateString(b.date);
+      return this.sortByDateAscending
+        ? dateA.getTime() - dateB.getTime()
+        : dateB.getTime() - dateA.getTime();
+    });
   }
 }

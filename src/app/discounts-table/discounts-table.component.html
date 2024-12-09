@@ -34,10 +34,15 @@
           <table class="table table-striped table-hover table-bordered">
             <thead class="thead-dark">
             <tr>
-              <th>Korting bij</th>
+              <th>
+                Korting bij
+                <button class="btn btn-sm btn-link sort-button" (click)="sortByCompany()" title="Sort by company">▲▼</button>
+              </th>
               <th>Met code</th>
               <th>%</th>
-              <th>Datum</th>
+              <th>
+                Datum <button class="btn btn-sm btn-link sort-button" (click)="sortByDate()" title="Sort by date">▲▼</button>
+              </th>
             </tr>
             </thead>
             <tbody>

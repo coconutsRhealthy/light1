@@ -41,3 +41,30 @@ h1 {
 .table-search-input {
   padding-top: 18px;
 }
+
+.sort-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.7rem;
+  margin-left: 5px;
+  padding: 0;
+  color: black;
+}
+
+.sort-button:focus {
+  outline: none;
+}
+
+.sort-button:hover {
+  text-decoration: underline;
+}
+
+.form-control {
+  height: 32px;
+  font-size: 14px;
+}
+
+.form-control::placeholder {
+  font-size: 14px;
+}
