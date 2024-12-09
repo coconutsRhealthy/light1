@@ -1,1 +1,38 @@
+h1 {
+  text-align: center;
+  font-size: 2rem;
+}
 
+.social-banner {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 5px;
+  padding: 3px;
+}
+
+.table-responsive table {
+  font-size: 10px;
+}
+
+.diski-table-button {
+  font-size: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.table-responsive table th,
+.table-responsive table td {
+  padding: 10px 5px;
+}
+
+.table-responsive table th {
+  color: black;
+  background-color: white;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgb(179, 178, 178);
+}
