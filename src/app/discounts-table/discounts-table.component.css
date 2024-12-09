@@ -68,3 +68,15 @@ h1 {
 .form-control::placeholder {
   font-size: 14px;
 }
+
+.hidden-cell {
+  display: none;
+}
+
+.banner-table-cell {
+  text-align: center;
+}
+
+.giftcard-highlight {
+  background-color: rgb(255, 255, 200);
+}
