@@ -80,3 +80,22 @@ h1 {
 .giftcard-highlight {
   background-color: rgb(255, 255, 200);
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-container button {
+  padding: 2px 10px;
+  font-size: 11px;
+  width: 80px;
+  color: white;
+  border: none;
+}
+
+.pagination-container span {
+  font-size: 11px;
+}
