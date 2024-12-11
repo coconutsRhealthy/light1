@@ -13,7 +13,7 @@ interface Discount {
 @Component({
   selector: 'app-discounts-table',
   templateUrl: './discounts-table.component.html',
-  styleUrls: ['./discounts-table.component.css'],
+  styleUrls: ['./discounts-table.component.css', './../app.component.css'],
   providers: [
     DatePipe,
     { provide: LOCALE_ID, useValue: 'nl' },
