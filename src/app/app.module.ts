@@ -15,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ContactComponent } from './contact/contact.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FooterComponent } from './footer/footer.component';
+import { GiftcardsComponent } from './giftcards/giftcards.component';
 
 const routes: Routes = [
     {
@@ -28,6 +29,14 @@ const routes: Routes = [
     {
       path: 'contact',
       component: ContactComponent
+    },
+    {
+      path: 'giftcards',
+      component: GiftcardsComponent
+    },
+    {
+      path: 'giftcards/:company',
+      component: GiftcardsComponent
     },
     {
       path: ':company',
@@ -49,7 +58,8 @@ const routes: Routes = [
     NavbarComponent,
     ContactComponent,
     NotFoundComponent,
-    FooterComponent
+    FooterComponent,
+    GiftcardsComponent
   ],
   imports: [
     BrowserModule,
