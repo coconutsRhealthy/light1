@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
 import { DiscountsService } from '../services/discounts.service';
+import { AffiliateLinkService } from '../services/affiliate-link.service';
+import { MetaService } from '../services/meta.service';
+
+declare global {
+  interface Window {
+    sendCopyCodeToGa: (element_id_index: number) => void;
+  }
+}
 
 interface Discount {
   company: string;
@@ -29,8 +37,14 @@ export class DiscountsTableComponent implements OnInit {
   selectedDiscount: any = null;
   sortByCompanyAscending = false;
   sortByDateAscending = false;
+  sendCopyCodeToGa = window.sendCopyCodeToGa;
 
-  constructor(private discountsService: DiscountsService, private datePipe: DatePipe) {}
+  constructor(private discountsService: DiscountsService, private affiliateLinkService: AffiliateLinkService,
+                private meta: MetaService, private datePipe: DatePipe) {
+    var monthYear = this.meta.getDateString();
+    this.meta.updateTitle("Diski | Online shoppen met kortingscodes in " + monthYear);
+    this.meta.updateMetaInfo("De nieuwste werkende kortingscodes van een groot aantal webshops; Bespaar op online shoppen in " + monthYear + " via diski.nl", "diski.nl", "Kortingscode, Korting");
+  }
 
   ngOnInit() {
     this.discountsService.getDiscounts().subscribe((data) => {
@@ -44,6 +58,10 @@ export class DiscountsTableComponent implements OnInit {
         };
       });
       this.filteredDiscounts = this.discounts;
+      const queryParams = new URLSearchParams(window.location.search);
+      if(queryParams.has('i')) {
+        this.openModal(this.discounts[queryParams.get('i')]);
+      }
     });
   }
 
@@ -113,5 +131,19 @@ export class DiscountsTableComponent implements OnInit {
         ? dateA.getTime() - dateB.getTime()
         : dateB.getTime() - dateA.getTime();
     });
+  }
+
+  affiliateModalAction(discount, codeTableIndex) {
+    if(this.affiliateLinkService.getAffiliateLink(discount.company) !== undefined) {
+      this.openNewPageWithCodeDetailModal(codeTableIndex, this.affiliateLinkService.getAffiliateLink(discount.company));
+    } else {
+      this.openModal(discount);
+    }
+  }
+
+  openNewPageWithCodeDetailModal(codeTableIndex, affiliateLink) {
+    var url = 'https://www.dutchtoy.nl?i=' + encodeURIComponent(codeTableIndex)
+    window.open(url, '_blank');
+    location.href = affiliateLink;
   }
 }
