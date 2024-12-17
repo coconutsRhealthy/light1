@@ -17,15 +17,20 @@
                     </div>
                     <div class="modal-body-values">
                         <p>
-                            {{ discount.discountCode }}
-                            <span class="tooltip-container">
-                                <button (click)="copyToClipboard(discount.discountCode)" class="copy-button">
-                                    Copy
-                                </button>
-                                <span *ngIf="isCopied" class="tooltip">
-                                    Copied!
+                            <ng-container *ngIf="discount.discountCode.startsWith('http'); else showCode">
+                                <a [routerLink]="['/giftcards', (discount.company | lowercase)]" target="_blank" (click)="sendGiftcardEventsToGa()">KLIK</a>
+                            </ng-container>
+                            <ng-template #showCode>
+                                {{ discount.discountCode }}
+                                <span class="tooltip-container">
+                                    <button (click)="copyToClipboard(discount.discountCode); sendEventToGa('CodeDetailModal', company)" class="copy-button">
+                                        Copy
+                                    </button>
+                                    <span *ngIf="isCopied" class="tooltip">
+                                        Copied!
+                                    </span>
                                 </span>
-                            </span>
+                            </ng-template>
                         </p>
                         <p>{{ getCorrectFormatDiscountPercentage(discount.percentage) }}</p>
                         <p>{{ getCorrectFormatOfCodeDate(discount.date) }}</p>

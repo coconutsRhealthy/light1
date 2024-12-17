@@ -91,4 +91,26 @@ export class ModalComponent {
       this.isCopied = false;
     }, 1500);
   }
+
+    sendEventToGa(eventName, eventLabel) {
+//       var eventLabelToUse = "zz" + eventLabel.toLowerCase();
+//       this.analyticsEventService.sendEventToGa(eventName, eventLabelToUse);
+    }
+
+    sendGiftcardEventsToGa() {
+//       if (typeof gtag === 'function') {
+//         const companyLowerCase = this.company.toLowerCase();
+//         gtag('event', 'giftcard', {
+//           'event_category': 'Giftcard',
+//           'event_label': 'giftcard_inmodal'
+//         });
+//
+//         gtag('event', 'giftcard', {
+//           'event_category': 'Giftcard',
+//           'event_label': 'giftcard_inmodal_' + companyLowerCase
+//         });
+//       } else {
+//         console.error('gtag is not defined');
+//       }
+    }
 }
