@@ -135,9 +135,9 @@ export class DiscountsTableComponent implements OnInit {
     });
   }
 
-  affiliateModalAction(discount, codeTableIndex) {
+  affiliateModalAction(discount) {
     if(this.affiliateLinkService.getAffiliateLink(discount.company) !== undefined) {
-      this.openNewPageWithCodeDetailModal(codeTableIndex, this.affiliateLinkService.getAffiliateLink(discount.company));
+      this.openNewPageWithCodeDetailModal(discount.index, this.affiliateLinkService.getAffiliateLink(discount.company));
     } else {
       this.openModal(discount);
     }
