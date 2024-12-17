@@ -13,3 +13,7 @@
 .vertical-centered {
   vertical-align: middle;
 }
+
+.table {
+  margin-bottom: 23px;
+}
