@@ -16,7 +16,12 @@
                         <p><strong>Gespot op:</strong></p>
                     </div>
                     <div class="modal-body-values">
-                        <p>{{ discount.discountCode }}</p>
+                        <p>
+                            {{ discount.discountCode }}
+                            <button (click)="copyToClipboard(discount.discountCode)" class="copy-button">
+                                Copy
+                            </button>
+                        </p>
                         <p>{{ discount.percentage }}%</p>
                         <p>{{ discount.date }}</p>
                     </div>

@@ -14,4 +14,16 @@ export class ModalComponent {
     this.isVisible = false;
     this.closed.emit();
   }
+
+    copyToClipboard(text: string) {
+      navigator.clipboard.writeText(text).then(
+        () => {
+          alert('Discount code copied to clipboard!');
+        },
+        (err) => {
+          console.error('Failed to copy: ', err);
+          alert('Failed to copy to clipboard.');
+        }
+      );
+    }
 }
