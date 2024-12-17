@@ -16,6 +16,7 @@ interface Discount {
   discountCode: string;
   percentage: string;
   date: string;
+  index: number;
 }
 
 @Component({
@@ -48,13 +49,14 @@ export class DiscountsTableComponent implements OnInit {
 
   ngOnInit() {
     this.discountsService.getDiscounts().subscribe((data) => {
-      this.discounts = data.map((line) => {
+      this.discounts = data.map((line, index) => {
         const [company, discountCode, percentage, , date] = line.split(', ');
         return {
           company,
           discountCode,
           percentage,
           date,
+          index: index
         };
       });
       this.filteredDiscounts = this.discounts;
