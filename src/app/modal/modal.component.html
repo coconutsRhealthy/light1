@@ -3,17 +3,24 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Discount Details</h5>
-                <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+                <h5 class="modal-title">{{ discount.company | uppercase }}</h5>
+                <button type="button" (click)="closeModal()" class="close-button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body" *ngIf="discount">
-                <p><strong>Company:</strong> {{ discount.company }}</p>
-                <p><strong>Discount Code:</strong> {{ discount.discountCode }}</p>
-                <p><strong>Percentage:</strong> {{ discount.percentage }}%</p>
-                <p><strong>Date:</strong> {{ discount.date }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                <div class="modal-body-row">
+                    <div class="modal-body-labels">
+                        <p><strong>Code:</strong></p>
+                        <p><strong>Korting:</strong></p>
+                        <p><strong>Gespot op:</strong></p>
+                    </div>
+                    <div class="modal-body-values">
+                        <p>{{ discount.discountCode }}</p>
+                        <p>{{ discount.percentage }}%</p>
+                        <p>{{ discount.date }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
