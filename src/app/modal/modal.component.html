@@ -18,12 +18,17 @@
                     <div class="modal-body-values">
                         <p>
                             {{ discount.discountCode }}
-                            <button (click)="copyToClipboard(discount.discountCode)" class="copy-button">
-                                Copy
-                            </button>
+                            <span class="tooltip-container">
+                                <button (click)="copyToClipboard(discount.discountCode)" class="copy-button">
+                                    Copy
+                                </button>
+                                <span *ngIf="isCopied" class="tooltip">
+                                    Copied!
+                                </span>
+                            </span>
                         </p>
-                        <p>{{ discount.percentage }}%</p>
-                        <p>{{ discount.date }}</p>
+                        <p>{{ getCorrectFormatDiscountPercentage(discount.percentage) }}</p>
+                        <p>{{ getCorrectFormatOfCodeDate(discount.date) }}</p>
                     </div>
                 </div>
             </div>
