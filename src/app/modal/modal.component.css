@@ -50,11 +50,10 @@
 
 .modal-body-row {
   display: flex;
-  gap: 20px;
 }
 
 .modal-body-labels {
-  flex: 0 0 25%;
+  flex: 0 0 35%;
   text-align: left;
 }
 

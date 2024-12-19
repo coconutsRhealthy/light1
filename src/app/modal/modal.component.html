@@ -36,6 +36,16 @@
                         <p>{{ getCorrectFormatOfCodeDate(discount.date) }}</p>
                     </div>
                 </div>
+                <div *ngIf="discount.company.startsWith('aliexpress')" class="row">
+                    <div class="col-12" style="color: blue; font-size: 14px;">
+                        Code geldig op geselecteerde producten. Zie <a href="https://best.aliexpress.com/" target="_blank" style="text-decoration: underline;">hier</a>
+                    </div>
+                </div>
+                <div *ngIf="discount.company.startsWith('temu')" class="row">
+                    <div class="col-12" style="color: blue; font-size: 14px;">
+                        Code te gebruiken in de Temu app met een nieuwe account. Code geeft €100 shoptegoed en 30% korting. Download de app <a href="https://temu.to/m/u0p32ew176i" target="_blank" style="text-decoration: underline;">hier</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
