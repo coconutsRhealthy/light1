@@ -27,6 +27,22 @@
 
 .table-search-input {
   padding-top: 18px;
+  position: relative;
+}
+
+.btn-close {
+  position: absolute;
+  right: 10px; /* Distance from the right edge of the input */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* Ensure it stays above the input */
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #6c757d; /* Neutral color */
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {
