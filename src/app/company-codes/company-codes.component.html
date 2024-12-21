@@ -1,8 +1,8 @@
-<div *ngIf="discountCodes.length === 0">
+<div *ngIf="!isLoading && discountCodes.length === 0">
   <app-not-found></app-not-found>
 </div>
 
-<div *ngIf="discountCodes.length > 0">
+<div *ngIf="!isLoading && discountCodes.length > 0">
   <div class="container-fluid">
     <div class="content">
       <app-navbar></app-navbar>

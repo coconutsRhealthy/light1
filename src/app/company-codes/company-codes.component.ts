@@ -26,6 +26,7 @@ export class CompanyCodesComponent implements OnInit {
   webshopName: string;
   companySeoText: string;
   discountCodes: { code: string, discount: string, date: string }[] = [];
+  isLoading = true;
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private elementRef: ElementRef,
                 private discountsService: DiscountsService, private webshopNameService: WebshopNameService,
@@ -98,6 +99,8 @@ export class CompanyCodesComponent implements OnInit {
             date: this.getCurrentDateAsString()
         }];
       }
+
+      this.isLoading = false;
     });
   }
 
