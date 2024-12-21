@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DiscountsService {
-  private url = 'assets/discounts.v1.json';
+  private url = 'assets/discounts.v2.json';
 
   constructor(private http: HttpClient) {}
 

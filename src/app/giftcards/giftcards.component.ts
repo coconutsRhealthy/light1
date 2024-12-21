@@ -29,10 +29,6 @@ export class GiftcardsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.setCompanyAndUrl(params.get('company'));
     });
-
-    this.initializeWebshopImageUrls();
-    this.initializeSteps();
-    this.updateMeta();
   }
 
   private setCompanyAndUrl(company: string): void {
@@ -51,6 +47,10 @@ export class GiftcardsComponent implements OnInit {
         this.giftCardCompany = matchingDiscount.company;
         this.giftCardUrl = matchingDiscount.discountCode;
       }
+
+      this.initializeWebshopImageUrls();
+      this.initializeSteps();
+      this.updateMeta();
     });
   }
 

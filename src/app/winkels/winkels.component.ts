@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscountsService } from '../services/discounts.service';
+import { MetaService } from '../services/meta.service';
 
 @Component({
   selector: 'app-winkels',
@@ -28,11 +29,15 @@ export class WinkelsComponent implements OnInit {
     });
   }
 
-  constructor(private discountsService: DiscountsService) {
+  constructor(private discountsService: DiscountsService, private meta: MetaService) {
 
   }
 
   groupWinkelsByLetter(winkels: string[]): { letter: string, winkels: string[] }[] {
+    var monthYear = this.meta.getDateString();
+    this.meta.updateTitle("Alle winkels met kortingscodes in " + monthYear);
+    this.meta.updateMetaInfo("Overzicht van webshops met werkende kortingscodes in " + monthYear + "; Bespaar met deze kortingscodes op online shoppen via diski.nl", "diski.nl", "Kortingscode, Korting");
+
     const groupedWinkels: { letter: string, winkels: string[] }[] = [];
 
     winkels.sort((a, b) => a.localeCompare(b));
