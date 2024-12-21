@@ -33,7 +33,6 @@ export class AffiliateLinkService {
     'stylevana': 'https://vana.ly/KmZChm',
     'temu': 'https://temu.to/m/u0p32ew176i',
     'temu (gratis producten)': 'https://temu.to/m/e74veq9vg5u',
-    'arket': 'https://www.stylink.it/BvdPmTQNoq',
     'easytoys': 'https://www.stylink.it/gNp4OigJPOA',
     'iciparisxl': 'https://www.stylink.it/wPQ4YtJRwZe',
     'yehwang_wholesale': 'https://bit.ly/43fOjKa',
