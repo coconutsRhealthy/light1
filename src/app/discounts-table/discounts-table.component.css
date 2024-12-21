@@ -32,17 +32,22 @@
 
 .btn-close {
   position: absolute;
-  right: 10px; /* Distance from the right edge of the input */
-  top: 50%;
+  right: 0.5rem;
+  top: 46%;
   transform: translateY(-50%);
-  z-index: 1; /* Ensure it stays above the input */
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
+  z-index: 1;
+  background: none;
   border: none;
   font-size: 1.2rem;
-  color: #6c757d; /* Neutral color */
+  color: #6c757d;
   cursor: pointer;
+  padding: 0;
+}
+
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
