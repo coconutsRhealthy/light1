@@ -18,12 +18,12 @@
                     <div class="modal-body-values">
                         <p>
                             <ng-container *ngIf="discount.discountCode.startsWith('http'); else showCode">
-                                <a [routerLink]="['/giftcards', (discount.company | lowercase)]" target="_blank" (click)="sendGiftcardEventsToGa()">KLIK</a>
+                                <a [routerLink]="['/giftcards', (discount.company | lowercase)]" target="_blank" (click)="sendGiftcardEventsToGa(discount.company)">KLIK</a>
                             </ng-container>
                             <ng-template #showCode>
                                 {{ discount.discountCode }}
                                 <span class="tooltip-container">
-                                    <button (click)="copyToClipboard(discount.discountCode); sendEventToGa('CodeDetailModal', company)" class="copy-button">
+                                    <button (click)="copyToClipboard(discount.discountCode); sendEventToGa('CodeDetailModal', discount.company)" class="copy-button">
                                         Copy
                                     </button>
                                     <span *ngIf="isCopied" class="tooltip">
@@ -43,7 +43,7 @@
                 </div>
                 <div *ngIf="discount.company.startsWith('temu')" class="row">
                     <div class="col-12" style="color: blue; font-size: 14px;">
-                        Code te gebruiken in de Temu app met een nieuwe account. Code geeft €100 shoptegoed en 30% korting. Download de app <a href="https://temu.to/m/u0p32ew176i" target="_blank" style="text-decoration: underline;">hier</a>
+                        Code te gebruiken in de Temu app met een nieuwe account. Code geeft €200 shoptegoed en 30% korting. Download de app <a href="https://temu.to/m/u0p32ew176i" target="_blank" style="text-decoration: underline;">hier</a>
                     </div>
                 </div>
             </div>

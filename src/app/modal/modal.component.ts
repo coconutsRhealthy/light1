@@ -1,5 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { AnalyticsEventService } from '../services/analytics-event.service';
+
+declare let gtag: Function;
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -10,6 +14,8 @@ export class ModalComponent {
   @Input() discount: any = null;
   @Output() closed = new EventEmitter<void>();
   isCopied = false;
+
+  constructor(private analyticsEventService: AnalyticsEventService) {}
 
   getCorrectFormatOfCodeDate(rawCodeDate) {
     var day = rawCodeDate.split("-")[1];
@@ -92,25 +98,25 @@ export class ModalComponent {
     }, 1500);
   }
 
-    sendEventToGa(eventName, eventLabel) {
-//       var eventLabelToUse = "zz" + eventLabel.toLowerCase();
-//       this.analyticsEventService.sendEventToGa(eventName, eventLabelToUse);
-    }
+  sendEventToGa(eventName, eventLabel) {
+    var eventLabelToUse = "zz" + eventLabel.toLowerCase();
+    this.analyticsEventService.sendEventToGa(eventName, eventLabelToUse);
+  }
 
-    sendGiftcardEventsToGa() {
-//       if (typeof gtag === 'function') {
-//         const companyLowerCase = this.company.toLowerCase();
-//         gtag('event', 'giftcard', {
-//           'event_category': 'Giftcard',
-//           'event_label': 'giftcard_inmodal'
-//         });
-//
-//         gtag('event', 'giftcard', {
-//           'event_category': 'Giftcard',
-//           'event_label': 'giftcard_inmodal_' + companyLowerCase
-//         });
-//       } else {
-//         console.error('gtag is not defined');
-//       }
+  sendGiftcardEventsToGa(company) {
+    if (typeof gtag === 'function') {
+      const companyLowerCase = company.toLowerCase();
+      gtag('event', 'giftcard', {
+        'event_category': 'Giftcard',
+        'event_label': 'giftcard_inmodal'
+      });
+
+      gtag('event', 'giftcard', {
+        'event_category': 'Giftcard',
+        'event_label': 'giftcard_inmodal_' + companyLowerCase
+      });
+    } else {
+      console.error('gtag is not defined');
     }
+  }
 }
