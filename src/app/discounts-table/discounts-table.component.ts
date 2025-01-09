@@ -129,9 +129,23 @@ export class DiscountsTableComponent implements OnInit {
     this.filteredDiscounts.sort((a, b) => {
       const dateA = this.getDateFromDateString(a.date);
       const dateB = this.getDateFromDateString(b.date);
+
+      const currentYear = new Date().getFullYear();
+      const nextYear = currentYear + 1;
+
+      const adjustedDateA = (dateA.getMonth() === 0 || dateA.getMonth() === 1 || dateA.getMonth() === 2) &&
+        (dateB.getMonth() === 11 || dateB.getMonth() === 10 || dateB.getMonth() === 9)
+        ? new Date(nextYear, dateA.getMonth(), dateA.getDate())
+        : new Date(currentYear, dateA.getMonth(), dateA.getDate());
+
+      const adjustedDateB = (dateB.getMonth() === 0 || dateB.getMonth() === 1 || dateB.getMonth() === 2) &&
+        (dateA.getMonth() === 11 || dateA.getMonth() === 10 || dateA.getMonth() === 9)
+        ? new Date(nextYear, dateB.getMonth(), dateB.getDate())
+        : new Date(currentYear, dateB.getMonth(), dateB.getDate());
+
       return this.sortByDateAscending
-        ? dateA.getTime() - dateB.getTime()
-        : dateB.getTime() - dateA.getTime();
+        ? adjustedDateA.getTime() - adjustedDateB.getTime()
+        : adjustedDateB.getTime() - adjustedDateA.getTime();
     });
   }
 
