@@ -7,14 +7,13 @@ import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 
 import { AppComponent } from './app.component';
-import { DiscountsTableComponent } from './discounts-table/discounts-table.component';
 import { ModalComponent } from './modal/modal.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
     {
       path: '',
-      component: DiscountsTableComponent
+      loadChildren: () => import('./discounts-table/discounts-table.module').then(m => m.DiscountsTableModule)
     },
     {
       path: 'winkels',
@@ -45,7 +44,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    DiscountsTableComponent,
     ModalComponent,
     NotFoundComponent
   ],
