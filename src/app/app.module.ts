@@ -8,13 +8,10 @@ import localeNl from '@angular/common/locales/nl';
 
 import { AppComponent } from './app.component';
 import { DiscountsTableComponent } from './discounts-table/discounts-table.component';
-import { WinkelsComponent } from './winkels/winkels.component';
 import { ModalComponent } from './modal/modal.component';
 import { CompanyCodesComponent } from './company-codes/company-codes.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { ContactComponent } from './contact/contact.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { FooterComponent } from './footer/footer.component';
 import { GiftcardsComponent } from './giftcards/giftcards.component';
 
 const routes: Routes = [
@@ -24,7 +21,7 @@ const routes: Routes = [
     },
     {
       path: 'winkels',
-      component: WinkelsComponent
+      loadChildren: () => import('./winkels/winkels.module').then(m => m.WinkelsModule)
     },
     {
       path: 'contact',
@@ -52,13 +49,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     DiscountsTableComponent,
-    WinkelsComponent,
     ModalComponent,
     CompanyCodesComponent,
-    NavbarComponent,
     ContactComponent,
     NotFoundComponent,
-    FooterComponent,
     GiftcardsComponent
   ],
   imports: [
