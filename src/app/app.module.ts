@@ -9,10 +9,7 @@ import localeNl from '@angular/common/locales/nl';
 import { AppComponent } from './app.component';
 import { DiscountsTableComponent } from './discounts-table/discounts-table.component';
 import { ModalComponent } from './modal/modal.component';
-import { CompanyCodesComponent } from './company-codes/company-codes.component';
-import { ContactComponent } from './contact/contact.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { GiftcardsComponent } from './giftcards/giftcards.component';
 
 const routes: Routes = [
     {
@@ -25,19 +22,19 @@ const routes: Routes = [
     },
     {
       path: 'contact',
-      component: ContactComponent
+      loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
     },
     {
       path: 'giftcards',
-      component: GiftcardsComponent
+      loadChildren: () => import('./giftcards/giftcards.module').then(m => m.GiftcardsModule)
     },
     {
       path: 'giftcards/:company',
-      component: GiftcardsComponent
+      loadChildren: () => import('./giftcards/giftcards.module').then(m => m.GiftcardsModule)
     },
     {
       path: ':company',
-      component: CompanyCodesComponent
+      loadChildren: () => import('./company-codes/company-codes.module').then(m => m.CompanyCodesModule)
     },
     {
       path: '**',
@@ -50,10 +47,7 @@ const routes: Routes = [
     AppComponent,
     DiscountsTableComponent,
     ModalComponent,
-    CompanyCodesComponent,
-    ContactComponent,
-    NotFoundComponent,
-    GiftcardsComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
