@@ -7,7 +7,6 @@ import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 
 import { AppComponent } from './app.component';
-import { ModalComponent } from './modal/modal.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
@@ -44,7 +43,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent,
     NotFoundComponent
   ],
   imports: [
